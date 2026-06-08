@@ -1,4 +1,8 @@
-const Inicio = ({ totalProdutos }) => {
+import { useProdutos } from '../hooks/useProdutos';
+
+const Inicio = () => {
+  const { produtos } = useProdutos();
+
   return (
     <div className="card">
       <h1>StockFlow</h1>
@@ -6,7 +10,7 @@ const Inicio = ({ totalProdutos }) => {
 
       <div className="resumo-estoque">
         <span>Total de produtos</span>
-        <strong>{totalProdutos}</strong>
+        <strong>{produtos.length}</strong>
       </div>
     </div>
   );

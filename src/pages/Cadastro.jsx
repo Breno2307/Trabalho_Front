@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useProdutos } from '../hooks/useProdutos';
 
-const Cadastro = ({ onCadastrarProduto }) => {
+const Cadastro = () => {
+  const { cadastrarProduto } = useProdutos();
   const produtoInicial = {
     nome: '',
     quantidade: '',
@@ -79,7 +81,7 @@ const Cadastro = ({ onCadastrarProduto }) => {
       return;
     }
 
-    onCadastrarProduto(produto);
+    cadastrarProduto(produto);
 
     setMensagemSucesso('Produto cadastrado com sucesso!');
     setErros({});

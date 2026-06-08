@@ -8,6 +8,7 @@ Aplicacao web em React para controle de estoque, com navegacao entre paginas, ca
 - Formulario controlado para cadastro de produtos.
 - Validacao de nome, quantidade e preco antes do envio.
 - Estado compartilhado entre Cadastro e Listagem.
+- Context API para centralizar produtos, carregamento da API e cadastro.
 - Listagem dinamica de produtos cadastrados e produtos carregados de API REST.
 - Estilizacao com CSS externo e responsividade basica.
 
@@ -45,6 +46,11 @@ src/
   components/
     Navbar.jsx
     Navbar.css
+  contexts/
+    ProdutosContext.jsx
+    ProdutosContextBase.js
+  hooks/
+    useProdutos.js
   pages/
     Cadastro.jsx
     Inicio.jsx

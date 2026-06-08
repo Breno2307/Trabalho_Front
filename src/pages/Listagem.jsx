@@ -1,3 +1,5 @@
+import { useProdutos } from '../hooks/useProdutos';
+
 const formatarPreco = (valor) => {
   return Number(valor).toLocaleString('pt-BR', {
     style: 'currency',
@@ -5,13 +7,15 @@ const formatarPreco = (valor) => {
   });
 };
 
-const Listagem = ({ produtos, carregando, erroApi }) => {
+const Listagem = () => {
+  const { produtos, carregandoProdutos, erroApi } = useProdutos();
+
   return (
     <div className="card">
       <h1>Listagem de Produtos</h1>
       <p>Visualizacao dos produtos carregados da API e cadastrados no estoque.</p>
 
-      {carregando && (
+      {carregandoProdutos && (
         <p className="mensagem-info">Carregando produtos da API...</p>
       )}
 
@@ -19,7 +23,7 @@ const Listagem = ({ produtos, carregando, erroApi }) => {
         <p className="mensagem-erro">Erro na API: {erroApi}</p>
       )}
 
-      {!carregando && produtos.length === 0 && (
+      {!carregandoProdutos && produtos.length === 0 && (
         <p className="mensagem-info">Nenhum produto encontrado.</p>
       )}
 
