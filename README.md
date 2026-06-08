@@ -1,16 +1,57 @@
-# React + Vite
+# StockFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicacao web em React para controle de estoque, com navegacao entre paginas, cadastro validado, listagem dinamica e consumo de API REST.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Menu de navegacao com rotas para Inicio, Cadastro, Listagem e Movimentacoes.
+- Formulario controlado para cadastro de produtos.
+- Validacao de nome, quantidade e preco antes do envio.
+- Estado compartilhado entre Cadastro e Listagem.
+- Listagem dinamica de produtos cadastrados e produtos carregados de API REST.
+- Estilizacao com CSS externo e responsividade basica.
 
-## React Compiler
+## API REST
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A aplicacao consome produtos da Fake Store API:
 
-## Expanding the ESLint configuration
+```txt
+https://fakestoreapi.com/products?limit=5
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Como executar
+
+```bash
+npm install
+npm run dev
+```
+
+Depois acesse o endereco exibido no terminal, normalmente:
+
+```txt
+http://localhost:5173
+```
+
+## Scripts
+
+- `npm run dev`: inicia o servidor local.
+- `npm run build`: gera a versao final da aplicacao.
+- `npm run lint`: executa a verificacao de codigo.
+
+## Estrutura
+
+```txt
+src/
+  components/
+    Navbar.jsx
+    Navbar.css
+  pages/
+    Cadastro.jsx
+    Inicio.jsx
+    Listagem.jsx
+    Movimentacoes.jsx
+  styles/
+    global.css
+  App.jsx
+  main.jsx
+```
