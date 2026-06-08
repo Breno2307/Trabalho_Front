@@ -1,8 +1,13 @@
-const Inicio = () => {
+const Inicio = ({ totalProdutos }) => {
   return (
-    <div>
-      <h1>Página Inicial</h1>
-      <p>Bem-vindo ao StockFlow - Sistema de Controle de Estoque</p>
+    <div className="card">
+      <h1>StockFlow</h1>
+      <p>Sistema de controle de estoque com cadastro, listagem e dados de API REST.</p>
+
+      <div className="resumo-estoque">
+        <span>Total de produtos</span>
+        <strong>{totalProdutos}</strong>
+      </div>
     </div>
   );
 };
