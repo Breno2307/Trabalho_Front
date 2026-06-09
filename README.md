@@ -47,6 +47,8 @@ src/
   components/
     Navbar.jsx
     Navbar.css
+    ProdutoCard.jsx
+    ProdutoLista.jsx
   contexts/
     ProdutosContext.jsx
     ProdutosContextBase.js

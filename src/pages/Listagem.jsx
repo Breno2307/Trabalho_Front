@@ -1,12 +1,6 @@
 import { useState } from 'react';
+import ProdutoLista from '../components/ProdutoLista';
 import { useProdutos } from '../hooks/useProdutos';
-
-const formatarPreco = (valor) => {
-  return Number(valor).toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  });
-};
 
 const Listagem = () => {
   const {
@@ -68,48 +62,10 @@ const Listagem = () => {
       )}
 
       {produtos.length > 0 && (
-        <div className="lista-produtos">
-          {produtos.map((produto) => (
-            <article className="produto-card" key={produto.id}>
-              {produto.imagem && (
-                <img
-                  src={produto.imagem}
-                  alt={produto.nome}
-                  className="produto-imagem"
-                />
-              )}
-
-              <div className="produto-topo">
-                <h2>{produto.nome}</h2>
-                <span>{produto.origem}</span>
-              </div>
-
-              <div className="produto-detalhes">
-                <p>
-                  <strong>Quantidade:</strong> {produto.quantidade}
-                </p>
-
-                <p>
-                  <strong>Preco:</strong> {formatarPreco(produto.preco)}
-                </p>
-
-                {produto.categoria && (
-                  <p>
-                    <strong>Categoria:</strong> {produto.categoria}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="button"
-                className="btn btn-alerta"
-                onClick={() => handleRemoverProduto(produto)}
-              >
-                Remover Produto
-              </button>
-            </article>
-          ))}
-        </div>
+        <ProdutoLista
+          produtos={produtos}
+          onRemoverProduto={handleRemoverProduto}
+        />
       )}
     </div>
   );
