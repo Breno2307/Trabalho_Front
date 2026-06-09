@@ -6,7 +6,8 @@ const Cadastro = () => {
   const produtoInicial = {
     nome: '',
     quantidade: '',
-    preco: ''
+    preco: '',
+    imagem: ''
   };
 
   const [produto, setProduto] = useState(produtoInicial);
@@ -17,6 +18,7 @@ const Cadastro = () => {
     const novosErros = {};
     const quantidade = Number(dadosProduto.quantidade);
     const preco = Number(dadosProduto.preco);
+    const imagem = dadosProduto.imagem.trim();
 
     if (!dadosProduto.nome.trim()) {
       novosErros.nome = 'Informe o nome do produto.';
@@ -34,6 +36,14 @@ const Cadastro = () => {
       novosErros.preco = 'O preco deve ser maior que zero.';
     }
 
+    if (imagem) {
+      try {
+        new URL(imagem);
+      } catch {
+        novosErros.imagem = 'Informe uma URL de imagem valida.';
+      }
+    }
+
     return novosErros;
   };
 
@@ -46,10 +56,11 @@ const Cadastro = () => {
       [name]: value
     }));
 
-    if (erros[name]) {
+    if (erros[name] || erros.api) {
       setErros((errosAtuais) => ({
         ...errosAtuais,
-        [name]: ''
+        [name]: '',
+        api: ''
       }));
     }
 
@@ -70,7 +81,7 @@ const Cadastro = () => {
   };
 
   // Envio do formulário
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errosValidacao = validarProduto(produto);
@@ -81,7 +92,15 @@ const Cadastro = () => {
       return;
     }
 
-    cadastrarProduto(produto);
+    const mensagemErro = await cadastrarProduto(produto);
+
+    if (mensagemErro) {
+      setMensagemSucesso('');
+      setErros({
+        api: mensagemErro
+      });
+      return;
+    }
 
     setMensagemSucesso('Produto cadastrado com sucesso!');
     setErros({});
@@ -172,6 +191,37 @@ const Cadastro = () => {
           )}
         </div>
 
+        <div className="campo">
+          <label htmlFor="imagem">Imagem do Produto</label>
+
+          <input
+            id="imagem"
+            type="url"
+            name="imagem"
+            placeholder="Cole a URL da imagem"
+            value={produto.imagem}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={erros.imagem ? 'campo-erro' : ''}
+            aria-invalid={erros.imagem ? 'true' : 'false'}
+            aria-describedby={erros.imagem ? 'erro-imagem' : undefined}
+          />
+
+          {erros.imagem && (
+            <span className="mensagem-erro" id="erro-imagem">
+              {erros.imagem}
+            </span>
+          )}
+
+          {produto.imagem && !erros.imagem && (
+            <img
+              src={produto.imagem}
+              alt="Previa do produto"
+              className="preview-imagem"
+            />
+          )}
+        </div>
+
         <button type="submit" className="btn">
           Cadastrar Produto
         </button>
@@ -179,6 +229,12 @@ const Cadastro = () => {
         {mensagemSucesso && (
           <p className="mensagem-sucesso">
             {mensagemSucesso}
+          </p>
+        )}
+
+        {erros.api && (
+          <p className="mensagem-erro">
+            {erros.api}
           </p>
         )}
 

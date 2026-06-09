@@ -1,23 +1,24 @@
 # StockFlow
 
-Aplicacao web em React para controle de estoque, com navegacao entre paginas, cadastro validado, listagem dinamica e consumo de API REST.
+Aplicacax   o web em React para controle de estoque, com navegacao entre paginas, cadastro validado, listagem dinamica e consumo de API REST.
 
 ## Funcionalidades
 
 - Menu de navegacao com rotas para Inicio, Cadastro, Listagem e Movimentacoes.
-- Formulario controlado para cadastro de produtos.
+- Formulario controlado para cadastro de produtos com URL de imagem.
 - Validacao de nome, quantidade e preco antes do envio.
 - Estado compartilhado entre Cadastro e Listagem.
 - Context API para centralizar produtos, carregamento da API e cadastro.
 - Listagem dinamica de produtos cadastrados e produtos carregados de API REST.
+- Controle de saida, remocao e desfazer movimentacoes de estoque.
 - Estilizacao com CSS externo e responsividade basica.
 
 ## API REST
 
-A aplicacao consome produtos da Fake Store API:
+A aplicacao consome produtos da Fake Store API usando GET, POST, PUT e DELETE:
 
 ```txt
-https://fakestoreapi.com/products?limit=5
+https://fakestoreapi.com/products
 ```
 
 ## Como executar
@@ -58,6 +59,8 @@ src/
     Inicio.jsx
     Listagem.jsx
     Movimentacoes.jsx
+  services/
+    fakeStoreApi.js
   styles/
     global.css
   App.jsx

@@ -66,6 +66,29 @@ p {
   background-color: #4f46e5;
 }
 
+.btn-secundario {
+  width: fit-content;
+  background-color: #334155;
+}
+
+.btn-secundario:hover {
+  background-color: #475569;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.btn-alerta {
+  width: fit-content;
+  background-color: #dc2626;
+}
+
+.btn-alerta:hover {
+  background-color: #b91c1c;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .App {
@@ -102,7 +125,8 @@ p {
   color: #f1f5f9;
 }
 
-.campo input {
+.campo input,
+.campo select {
   padding: 12px;
 
   border-radius: 6px;
@@ -114,7 +138,8 @@ p {
   font-size: 16px;
 }
 
-.campo input:focus {
+.campo input:focus,
+.campo select:focus {
   outline: none;
   border: 1px solid #6366f1;
 }
@@ -141,6 +166,23 @@ p {
 
 .mensagem-info {
   color: #bfdbfe;
+}
+
+.api-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.preview-imagem {
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #f8fafc;
 }
 
 .resumo-estoque {
@@ -180,6 +222,15 @@ p {
   background-color: #0f172a;
 }
 
+.produto-imagem {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #f8fafc;
+}
+
 .produto-topo {
   display: flex;
   justify-content: space-between;
@@ -215,6 +266,56 @@ p {
   color: #f8fafc;
 }
 
+.historico-movimentacoes {
+  margin-top: 32px;
+}
+
+.historico-movimentacoes h2 {
+  color: #f8fafc;
+  margin-bottom: 16px;
+}
+
+.lista-movimentacoes {
+  display: grid;
+  gap: 12px;
+}
+
+.movimentacao-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background-color: #0f172a;
+}
+
+.movimentacao-item strong {
+  color: #fca5a5;
+}
+
+.movimentacao-item p {
+  margin-bottom: 0;
+}
+
+.movimentacao-item span {
+  color: #f8fafc;
+  font-weight: bold;
+}
+
+.movimentacao-item small {
+  color: #94a3b8;
+}
+
+.movimentacao-desfeita {
+  opacity: 0.7;
+}
+
+.movimentacao-desfeita strong {
+  color: #94a3b8;
+}
+
 @media (max-width: 480px) {
   .produto-topo {
     flex-direction: column;
@@ -223,5 +324,9 @@ p {
   .resumo-estoque {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .movimentacao-item {
+    grid-template-columns: 1fr;
   }
 }

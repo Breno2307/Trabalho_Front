@@ -1,10 +1,14 @@
 import ProdutoCard from './ProdutoCard';
 
-const ProdutoLista = ({ produtos }) => {
+const ProdutoLista = ({ produtos, onRemoverProduto }) => {
   return (
     <div className="lista-produtos">
       {produtos.map((produto) => (
-        <ProdutoCard produto={produto} key={produto.id} />
+        <ProdutoCard
+          produto={produto}
+          onRemoverProduto={onRemoverProduto}
+          key={produto.id}
+        />
       ))}
     </div>
   );

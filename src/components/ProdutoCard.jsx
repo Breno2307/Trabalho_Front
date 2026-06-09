@@ -5,9 +5,17 @@ const formatarPreco = (valor) => {
   });
 };
 
-const ProdutoCard = ({ produto }) => {
+const ProdutoCard = ({ produto, onRemoverProduto }) => {
   return (
     <article className="produto-card">
+      {produto.imagem && (
+        <img
+          src={produto.imagem}
+          alt={produto.nome}
+          className="produto-imagem"
+        />
+      )}
+
       <div className="produto-topo">
         <h2>{produto.nome}</h2>
         <span>{produto.origem}</span>
@@ -21,7 +29,21 @@ const ProdutoCard = ({ produto }) => {
         <p>
           <strong>Preco:</strong> {formatarPreco(produto.preco)}
         </p>
+
+        {produto.categoria && (
+          <p>
+            <strong>Categoria:</strong> {produto.categoria}
+          </p>
+        )}
       </div>
+
+      <button
+        type="button"
+        className="btn btn-alerta"
+        onClick={() => onRemoverProduto(produto)}
+      >
+        Remover Produto
+      </button>
     </article>
   );
 };
