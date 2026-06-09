@@ -8,5 +8,5 @@ export const useProdutos = () => {
     throw new Error('useProdutos deve ser usado dentro de ProdutosProvider.');
   }
 
-  return contexto;
+  return contexto; 
 };
