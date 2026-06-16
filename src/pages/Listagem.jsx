@@ -27,9 +27,19 @@ const Listagem = () => {
   };
 
   return (
-    <div className="card">
-      <h1>Listagem de Produtos</h1>
-      <p>Visualizacao dos produtos carregados da API e cadastrados no estoque.</p>
+    <section className="page-section">
+      <div className="page-heading page-heading-row">
+        <div>
+          <span className="eyebrow">Catalogo</span>
+          <h1>Listagem de Produtos</h1>
+          <p>Visualizacao dos produtos carregados da API e cadastrados no estoque.</p>
+        </div>
+
+        <div className="resumo-estoque">
+          <span>Total</span>
+          <strong>{produtos.length}</strong>
+        </div>
+      </div>
 
       {carregandoProdutos && (
         <p className="mensagem-info">Carregando produtos da API...</p>
@@ -67,7 +77,7 @@ const Listagem = () => {
           onRemoverProduto={handleRemoverProduto}
         />
       )}
-    </div>
+    </section>
   );
 };
 

@@ -15,6 +15,9 @@ const Movimentacoes = () => {
   const [mensagemSucesso, setMensagemSucesso] = useState('');
 
   const produtosComEstoque = produtos.filter((produto) => produto.quantidade > 0);
+  const totalRetirado = movimentacoes
+    .filter((movimentacao) => movimentacao.tipo === 'Saida' && !movimentacao.desfeita)
+    .reduce((total, movimentacao) => total + movimentacao.quantidade, 0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,11 +50,21 @@ const Movimentacoes = () => {
   };
 
   return (
-    <div className="card">
-      <h1>Movimentacoes de Estoque</h1>
-      <p>Registre saidas de produtos e acompanhe as retiradas do estoque.</p>
+    <section className="page-section">
+      <div className="page-heading page-heading-row">
+        <div>
+          <span className="eyebrow">Operacoes</span>
+          <h1>Movimentacoes de Estoque</h1>
+          <p>Registre saidas de produtos e acompanhe as retiradas do estoque.</p>
+        </div>
 
-      <form className="formulario" onSubmit={handleSubmit}>
+        <div className="resumo-estoque">
+          <span>Retiradas ativas</span>
+          <strong>{totalRetirado}</strong>
+        </div>
+      </div>
+
+      <form className="formulario movimentacao-form" onSubmit={handleSubmit}>
         <div className="campo">
           <label htmlFor="produto">Produto</label>
 
@@ -93,17 +106,19 @@ const Movimentacoes = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-alerta">
-          Registrar Saida
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-alerta">
+            Registrar Saida
+          </button>
 
-        {erro && (
-          <p className="mensagem-erro">{erro}</p>
-        )}
+          {erro && (
+            <p className="mensagem-erro">{erro}</p>
+          )}
 
-        {mensagemSucesso && (
-          <p className="mensagem-sucesso">{mensagemSucesso}</p>
-        )}
+          {mensagemSucesso && (
+            <p className="mensagem-sucesso">{mensagemSucesso}</p>
+          )}
+        </div>
       </form>
 
       <section className="historico-movimentacoes">
@@ -139,7 +154,7 @@ const Movimentacoes = () => {
           </div>
         )}
       </section>
-    </div>
+    </section>
   );
 };
 
