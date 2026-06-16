@@ -8,13 +8,17 @@ const formatarPreco = (valor) => {
 const ProdutoCard = ({ produto, onRemoverProduto }) => {
   return (
     <article className="produto-card">
-      {produto.imagem && (
-        <img
-          src={produto.imagem}
-          alt={produto.nome}
-          className="produto-imagem"
-        />
-      )}
+      <div className="produto-imagem-wrap">
+        {produto.imagem ? (
+          <img
+            src={produto.imagem}
+            alt={produto.nome}
+            className="produto-imagem"
+          />
+        ) : (
+          <span>Sem imagem</span>
+        )}
+      </div>
 
       <div className="produto-topo">
         <h2>{produto.nome}</h2>

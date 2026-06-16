@@ -47,7 +47,6 @@ const Cadastro = () => {
     return novosErros;
   };
 
-  // Captura os dados digitados
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -80,7 +79,6 @@ const Cadastro = () => {
     }));
   };
 
-  // Envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -104,20 +102,18 @@ const Cadastro = () => {
 
     setMensagemSucesso('Produto cadastrado com sucesso!');
     setErros({});
-
-    // Limpar formulário
     setProduto(produtoInicial);
   };
 
   return (
-    <div className="card">
-
-      <h1>Cadastro de Produtos</h1>
-
-      <p>Preencha os dados do produto abaixo:</p>
+    <section className="page-section form-page">
+      <div className="page-heading">
+        <span className="eyebrow">Novo item</span>
+        <h1>Cadastro de Produtos</h1>
+        <p>Preencha os dados para adicionar um produto ao estoque.</p>
+      </div>
 
       <form onSubmit={handleSubmit} className="formulario" noValidate>
-
         <div className="campo">
           <label htmlFor="nome">Nome do Produto</label>
 
@@ -167,14 +163,14 @@ const Cadastro = () => {
         </div>
 
         <div className="campo">
-          <label htmlFor="preco">Preço</label>
+          <label htmlFor="preco">Preco</label>
 
           <input
             id="preco"
             type="number"
             step="0.01"
             name="preco"
-            placeholder="Digite o preço"
+            placeholder="Digite o preco"
             value={produto.preco}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -191,7 +187,7 @@ const Cadastro = () => {
           )}
         </div>
 
-        <div className="campo">
+        <div className="campo campo-largo">
           <label htmlFor="imagem">Imagem do Produto</label>
 
           <input
@@ -222,24 +218,25 @@ const Cadastro = () => {
           )}
         </div>
 
-        <button type="submit" className="btn">
-          Cadastrar Produto
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn">
+            Cadastrar Produto
+          </button>
 
-        {mensagemSucesso && (
-          <p className="mensagem-sucesso">
-            {mensagemSucesso}
-          </p>
-        )}
+          {mensagemSucesso && (
+            <p className="mensagem-sucesso">
+              {mensagemSucesso}
+            </p>
+          )}
 
-        {erros.api && (
-          <p className="mensagem-erro">
-            {erros.api}
-          </p>
-        )}
-
+          {erros.api && (
+            <p className="mensagem-erro">
+              {erros.api}
+            </p>
+          )}
+        </div>
       </form>
-    </div>
+    </section>
   );
 };
 
