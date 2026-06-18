@@ -218,7 +218,7 @@ Durante o desenvolvimento foram utilizados os seguintes conceitos:
 ## 1. Clonar o repositório
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/Breno2307/Trabalho_Front.git
 ```
 
 ## 2. Entrar na pasta
