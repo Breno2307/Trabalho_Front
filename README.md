@@ -263,8 +263,8 @@ http://localhost:5173
 
 Projeto desenvolvido por:
 
-* Breno Candido
-* Cauã Mata
+* Breno Candido - 2424290034
+* Cauã Mata - 2424290031
 
 ---
 
