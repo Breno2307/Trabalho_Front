@@ -63,7 +63,10 @@
   font-size: 0.94rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .navbar-links a:hover,
@@ -259,7 +262,10 @@
   color: var(--text);
   background: var(--surface-strong);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .campo input:focus,
@@ -308,7 +314,10 @@
   cursor: pointer;
   font-weight: 800;
   text-align: center;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn:hover {
@@ -589,5 +598,11 @@
   .resumo-estoque {
     width: 100%;
     justify-content: space-between;
+  }
+  .contador-caracteres {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: #666;
   }
 }

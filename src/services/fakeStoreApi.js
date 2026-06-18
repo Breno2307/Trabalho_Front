@@ -14,7 +14,9 @@ const montarPayloadProduto = (produto) => ({
   title: produto.nome,
   price: Number(produto.preco),
   description: produto.descricao || 'Produto cadastrado pelo StockFlow',
-  image: produto.imagem || 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+  image:
+    produto.imagem ||
+    'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
   category: produto.categoria || 'stock'
 });
 
@@ -23,18 +25,23 @@ const validarResposta = async (resposta, mensagemErro) => {
     throw new Error(mensagemErro);
   }
 
-  return resposta.json();
+  const texto = await resposta.text();
+
+  return texto ? JSON.parse(texto) : {};
 };
 
 export const buscarProdutosApi = async () => {
   const resposta = await fetch(`${API_BASE_URL}/products`);
+
   const dados = await validarResposta(
     resposta,
     'Nao foi possivel carregar os produtos da Fake Store API.'
   );
 
   if (!Array.isArray(dados)) {
-    throw new Error('A resposta da API nao esta no formato esperado.');
+    throw new Error(
+      'A resposta da API nao esta no formato esperado.'
+    );
   }
 
   return dados.map(normalizarProdutoApi);
@@ -49,25 +56,43 @@ export const criarProdutoApi = async (produto) => {
     body: JSON.stringify(montarPayloadProduto(produto))
   });
 
-  return validarResposta(resposta, 'Nao foi possivel cadastrar o produto na API.');
+  return validarResposta(
+    resposta,
+    'Nao foi possivel cadastrar o produto na API.'
+  );
 };
 
 export const atualizarProdutoApi = async (produto) => {
-  const resposta = await fetch(`${API_BASE_URL}/products/${produto.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(montarPayloadProduto(produto))
-  });
+  const resposta = await fetch(
+    `${API_BASE_URL}/products/${produto.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(montarPayloadProduto(produto))
+    }
+  );
 
-  return validarResposta(resposta, 'Nao foi possivel atualizar o produto na API.');
+  return validarResposta(
+    resposta,
+    'Nao foi possivel atualizar o produto na API.'
+  );
 };
 
 export const deletarProdutoApi = async (produtoId) => {
-  const resposta = await fetch(`${API_BASE_URL}/products/${produtoId}`, {
-    method: 'DELETE'
-  });
+  const resposta = await fetch(
+    `${API_BASE_URL}/products/${produtoId}`,
+    {
+      method: 'DELETE'
+    }
+  );
 
-  return validarResposta(resposta, 'Nao foi possivel remover o produto da API.');
+  if (!resposta.ok) {
+    throw new Error(
+      'Nao foi possivel remover o produto da API.'
+    );
+  }
+
+  return true;
 };

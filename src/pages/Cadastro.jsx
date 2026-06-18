@@ -3,6 +3,7 @@ import { useProdutos } from '../hooks/useProdutos';
 
 const Cadastro = () => {
   const { cadastrarProduto } = useProdutos();
+
   const produtoInicial = {
     nome: '',
     quantidade: '',
@@ -22,12 +23,16 @@ const Cadastro = () => {
 
     if (!dadosProduto.nome.trim()) {
       novosErros.nome = 'Informe o nome do produto.';
+    } else if (dadosProduto.nome.trim().length > 50) {
+      novosErros.nome =
+        'O nome do produto deve ter no máximo 50 caracteres.';
     }
 
     if (dadosProduto.quantidade === '') {
       novosErros.quantidade = 'Informe a quantidade em estoque.';
     } else if (!Number.isInteger(quantidade) || quantidade <= 0) {
-      novosErros.quantidade = 'A quantidade deve ser um numero inteiro maior que zero.';
+      novosErros.quantidade =
+        'A quantidade deve ser um numero inteiro maior que zero.';
     }
 
     if (dadosProduto.preco === '') {
@@ -68,6 +73,7 @@ const Cadastro = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
+
     const errosAtualizados = validarProduto({
       ...produto,
       [name]: value
@@ -110,10 +116,16 @@ const Cadastro = () => {
       <div className="page-heading">
         <span className="eyebrow">Novo item</span>
         <h1>Cadastro de Produtos</h1>
-        <p>Preencha os dados para adicionar um produto ao estoque.</p>
+        <p>
+          Preencha os dados para adicionar um produto ao estoque.
+        </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="formulario" noValidate>
+      <form
+        onSubmit={handleSubmit}
+        className="formulario"
+        noValidate
+      >
         <div className="campo">
           <label htmlFor="nome">Nome do Produto</label>
 
@@ -125,13 +137,23 @@ const Cadastro = () => {
             value={produto.nome}
             onChange={handleChange}
             onBlur={handleBlur}
+            maxLength={50}
             className={erros.nome ? 'campo-erro' : ''}
             aria-invalid={erros.nome ? 'true' : 'false'}
-            aria-describedby={erros.nome ? 'erro-nome' : undefined}
+            aria-describedby={
+              erros.nome ? 'erro-nome' : undefined
+            }
           />
 
+          <small className="contador-caracteres">
+            {produto.nome.length}/50 caracteres
+          </small>
+
           {erros.nome && (
-            <span className="mensagem-erro" id="erro-nome">
+            <span
+              className="mensagem-erro"
+              id="erro-nome"
+            >
               {erros.nome}
             </span>
           )}
@@ -151,12 +173,21 @@ const Cadastro = () => {
             min="1"
             step="1"
             className={erros.quantidade ? 'campo-erro' : ''}
-            aria-invalid={erros.quantidade ? 'true' : 'false'}
-            aria-describedby={erros.quantidade ? 'erro-quantidade' : undefined}
+            aria-invalid={
+              erros.quantidade ? 'true' : 'false'
+            }
+            aria-describedby={
+              erros.quantidade
+                ? 'erro-quantidade'
+                : undefined
+            }
           />
 
           {erros.quantidade && (
-            <span className="mensagem-erro" id="erro-quantidade">
+            <span
+              className="mensagem-erro"
+              id="erro-quantidade"
+            >
               {erros.quantidade}
             </span>
           )}
@@ -177,11 +208,16 @@ const Cadastro = () => {
             min="0.01"
             className={erros.preco ? 'campo-erro' : ''}
             aria-invalid={erros.preco ? 'true' : 'false'}
-            aria-describedby={erros.preco ? 'erro-preco' : undefined}
+            aria-describedby={
+              erros.preco ? 'erro-preco' : undefined
+            }
           />
 
           {erros.preco && (
-            <span className="mensagem-erro" id="erro-preco">
+            <span
+              className="mensagem-erro"
+              id="erro-preco"
+            >
               {erros.preco}
             </span>
           )}
@@ -200,11 +236,16 @@ const Cadastro = () => {
             onBlur={handleBlur}
             className={erros.imagem ? 'campo-erro' : ''}
             aria-invalid={erros.imagem ? 'true' : 'false'}
-            aria-describedby={erros.imagem ? 'erro-imagem' : undefined}
+            aria-describedby={
+              erros.imagem ? 'erro-imagem' : undefined
+            }
           />
 
           {erros.imagem && (
-            <span className="mensagem-erro" id="erro-imagem">
+            <span
+              className="mensagem-erro"
+              id="erro-imagem"
+            >
               {erros.imagem}
             </span>
           )}
